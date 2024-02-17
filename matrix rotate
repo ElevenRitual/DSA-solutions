@@ -1,0 +1,49 @@
+
+class Main{
+  public  static void rotate(int [][] arr){
+    int row=arr.length;
+    int col= arr[0].length;
+    for(int i=0;i<row;i++){
+      for(int j=i;j<col;j++){
+        int temp=arr[i][j];
+        arr[i][j]=arr[j][i];
+        arr[j][i]=temp;
+
+      }
+    }
+  }
+  public static void swap(int [][] arr){
+    for(int i=0;i<arr.length;i++){
+      int li=0;
+      int ri=arr[0].length-1;
+      while(li<ri){
+        int temp=arr[i][ri];
+        arr[i][ri]=arr[i][li];
+        arr[i][li]=temp;
+        li++;
+        ri--;
+      }
+    
+    }
+  }
+  
+  public static void main(String[] args) {
+    int []ar[] ={
+      {1,2,3},
+      {4,5,6},
+      {7,8,9}
+    };
+    rotate(ar);
+    swap(ar);
+    for(int i=0;i<ar.length;i++){
+      for(int j=0;j<ar[0].length;j++){
+        System.out.print(ar[i][j]+" ");
+
+      }
+      System.out.println();
+    }
+
+
+    
+  }
+}
