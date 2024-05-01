@@ -1,3 +1,4 @@
+// Time Complexity for this code is O(n)
 public class heap {
     public static void buildHeap(int arr[], int n) {
         int startInd = (n / 2) - 1;
