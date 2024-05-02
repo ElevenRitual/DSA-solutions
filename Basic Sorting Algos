@@ -1,0 +1,96 @@
+
+public class m {
+    public static void mergeSort(int arr[],int l,int r)
+      { 
+        if(l<r){
+            int mid=l+(r-l)/2;
+            mergeSort(arr,l,mid);
+            mergeSort(arr,mid+1,r);
+            Merge(arr,l,mid,r);
+        }
+    }
+    public static void Merge(int arr[] ,int l,int mid,int r){
+        int i,j,k;
+        //size of left and right
+        int n1= mid-l+1;
+        int n2= r-mid;
+        int [] lsubarray= new int[n1];
+        int [] rsubarray= new int[n2];
+
+        //copy the data in the left and right sub array
+        for(i=0;i<n1;i++){
+            lsubarray[i]=arr[i+l];
+        }
+        for(j=0;j<n2;j++){
+            rsubarray[j]= arr[mid+1+j];
+        }
+        //comparsion between the left and rigth subaary
+        i=0;
+        j=0;
+        k=l;
+
+        while(i<n1 && j<n2){
+            if(lsubarray[i]<=rsubarray[j]){
+                arr[k]= lsubarray[i];
+                i++;
+            }else{
+                arr[k]=rsubarray[j];
+                j++;
+            }
+            k++;
+        }
+        while (i<n1) {
+            arr[k]=lsubarray[i];
+            i=i+1;
+            k=k+1;  
+        }
+        while (j<n2) {
+            arr[k]=rsubarray[j];
+            j=j+1;
+            k=k+1;
+            
+        }
+
+    }
+    public static int part(int arr[],int l,int h){
+        int pivot=arr[l];
+        int i=l;
+        for(int j=l+1;j<=h;j++){
+            if(arr[j]<=pivot){
+                i=i+1;
+                int temp =arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+            }
+        }
+        int temp=arr[l];
+        arr[l]=arr[i];
+        arr[i]=temp;
+        
+        return i;
+       
+    }
+    public static void quick(int arr[],int l,int h){
+        if(l<h){
+            int m= part(arr,l,h);
+            quick(arr,l,m-1);
+            quick(arr,m+1,h);
+
+        }
+    }
+    public static void main(String[] args) {
+        int arr[]={12,3,31,1,2,344};
+        // mergeSort(arr,0,arr.length-1);
+        // for(int ar:arr){
+        //     System.out.print(ar+ " ");
+        // }
+        quick(arr,0,arr.length-1);
+        for(int i: arr){
+            System.out.println(i);
+        }
+       
+        
+        
+    }
+    
+}
