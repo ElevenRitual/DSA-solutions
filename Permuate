@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+
+public class per {
+    public static void permutate(char []s ,int fi){
+        if(fi==s.length){
+           System.out.println(s);
+            return;
+        }
+       
+       
+        for(int i=fi;i<s.length;i++){
+            swap(s,fi,i);
+            permutate(s,fi+1);
+            swap(s,fi,i);
+            
+        }
+    }
+    public static void swap(char []s,int fi,int idx){
+        char temp =s[fi];
+        s[fi]=s[idx];
+        s[idx]=temp;
+
+        
+    }
+    public static void main(String[] args) {
+        char[]s= {'A','A','C'};
+        permutate(s,0);
+        
+    }
+    
+}
