@@ -1,0 +1,57 @@
+package JAVAL;
+
+public class Trie {
+    static class Node {
+        Node[] children;
+        boolean eow;
+
+        public Node() {
+            children = new Node[26]; // to store A-Z
+            eow = false;
+        }
+    }
+
+    public static Node root = new Node();
+
+    //<-------------------------------->
+    // Insertion in Trie
+    public static void insert(String word) {
+        Node current = root;
+        for (int i = 0; i < word.length(); i++) {
+            int ind = word.charAt(i) - 'a';
+            if (current.children[ind] == null) {
+                // add new node
+                current.children[ind] = new Node();
+            }
+            current = current.children[ind];
+        }
+        // end of word
+        current.eow = true;
+    }
+
+    //<-------------------------------->
+    // Searching in Trie
+    public static boolean search(String key) {
+        Node current = root;
+        for (int i = 0; i < key.length(); i++) {
+            int ind = key.charAt(i) - 'a';
+            if (current.children[ind] == null) {
+                return false;
+            }
+            current = current.children[ind];
+        }
+        return current.eow;
+    }
+
+    //<-------------------------------->
+    public static void main(String[] args) {
+        String words[] = { "the", "a", "there", "their", "any" };
+        for (String word : words) {
+            insert(word);
+        }
+        System.out.println(search("the"));    // Output: true
+        System.out.println(search("these"));  // Output: false
+        System.out.println(search("their"));  // Output: true
+        System.out.println(search("thaw"));   // Output: false
+    }
+}
